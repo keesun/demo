@@ -23,6 +23,11 @@ public class SimpleEventService implements EventService {
         return simpleEvent;
     }
 
+    @Override
+    public Event findOneByHashtag(String hashtag) {
+        return null;
+    }
+
     private void validate(Event event) throws EventCannotCreateException {
         if (!StringUtils.hasText(event.getName())) {
             throw new EventCannotCreateException();

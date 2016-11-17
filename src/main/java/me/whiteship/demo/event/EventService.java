@@ -7,4 +7,6 @@ import me.whiteship.demo.domain.Event;
  */
 public interface EventService {
     Event create(Event event);
+
+    Event findOneByHashtag(String hashtag);
 }

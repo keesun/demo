@@ -22,4 +22,11 @@ public abstract class Event {
 
     private EventStatus eventStatus;
 
+    /**
+     * Temporal token for this event.
+     * This value can be used to invite people and should be human-readable and not too long.
+     * This value will be removed after this event ended.
+     */
+    private String hashtag;
+
 }
