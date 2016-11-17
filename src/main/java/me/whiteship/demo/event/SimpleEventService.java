@@ -3,6 +3,7 @@ package me.whiteship.demo.event;
 import me.whiteship.demo.domain.Event;
 import me.whiteship.demo.domain.EventStatus;
 import me.whiteship.demo.domain.SimpleEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 /**
@@ -10,22 +11,18 @@ import org.springframework.util.StringUtils;
  */
 public class SimpleEventService implements EventService {
 
+    @Autowired EventRepository repository;
+
     @Override
     public Event create(Event event) {
         validate(event);
-        SimpleEvent simpleEvent = new SimpleEvent();
-        simpleEvent.setName(event.getName());
-        simpleEvent.setDescription(event.getDescription());
-        simpleEvent.setStartDateTime(event.getStartDateTime());
-        simpleEvent.setEndDateTime(event.getEndDateTime());
-        simpleEvent.setEventStatus(EventStatus.PENDING);
-        simpleEvent.setId(1); // TODO generating this value from DB
-        return simpleEvent;
+        event.setEventStatus(EventStatus.PENDING);
+        return repository.save(event);
     }
 
     @Override
     public Event findOneByHashtag(String hashtag) {
-        return null;
+        return repository.findByHashtag(hashtag);
     }
 
     private void validate(Event event) throws EventCannotCreateException {
