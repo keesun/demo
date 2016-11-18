@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
 public class EventServiceTest {
 
     SimpleEventService eventService = new SimpleEventService();
+
     @Mock
     EventRepository eventRepository;
 
