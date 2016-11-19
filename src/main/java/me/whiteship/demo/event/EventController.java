@@ -21,9 +21,14 @@ public class EventController {
         return new ResponseEntity<>(service.create(simpleEvent), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/event/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/events/{id}")
     public ResponseEntity get(@PathVariable Integer id) {
         return new ResponseEntity<>(repository.findOne(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/events")
+    public ResponseEntity list() {
+        return new ResponseEntity<>(service.findRecentEvents(20), HttpStatus.OK);
     }
 
 }

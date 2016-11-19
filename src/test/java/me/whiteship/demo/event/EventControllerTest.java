@@ -1,6 +1,7 @@
 package me.whiteship.demo.event;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.whiteship.demo.domain.Event;
 import me.whiteship.demo.domain.SimpleEvent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
@@ -55,8 +59,17 @@ public class EventControllerTest {
         SimpleEvent event = new SimpleEvent();
         event.setId(1);
         given(eventRepository.findOne(any())).willReturn(event);
-        this.mvc.perform(get("/event/1"))
+        this.mvc.perform(get("/events/1"))
                 .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    public void testList() throws Exception {
+        List<Event> events = new ArrayList<>();
+        given(eventService.findRecentEvents(20)).willReturn(events);
+        this.mvc.perform(get("/events"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }

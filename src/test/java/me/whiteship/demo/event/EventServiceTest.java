@@ -9,11 +9,18 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -89,6 +96,19 @@ public class EventServiceTest {
 
         Event foundEvent = eventService.findOneByHashtag("haya");
         assertEquals("Candle light", foundEvent.getName());
+    }
+
+    @Test
+    public void findRecentEvents() {
+        List<Event> events = new ArrayList<>();
+        events.add(new SimpleEvent());
+        events.add(new SimpleEvent());
+        PageImpl<Event> page = new PageImpl<>(events);
+        given(eventRepository.findAll(any(PageRequest.class))).willReturn(page);
+
+        List<Event> recentEvents = eventService.findRecentEvents(20);
+
+        assertEquals(2, recentEvents.size());
     }
 
 }

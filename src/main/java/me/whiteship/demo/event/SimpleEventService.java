@@ -4,7 +4,12 @@ import me.whiteship.demo.domain.Event;
 import me.whiteship.demo.domain.EventStatus;
 import me.whiteship.demo.domain.SimpleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author keesun
@@ -23,6 +28,13 @@ public class SimpleEventService implements EventService {
     @Override
     public Event findOneByHashtag(String hashtag) {
         return repository.findByHashtag(hashtag);
+    }
+
+    @Override
+    public List<Event> findRecentEvents(int size) {
+        List<Event> events = new ArrayList<>();
+        repository.findAll(new PageRequest(0, size, new Sort(Sort.Direction.DESC, "startDateTime"))).forEach(events::add);
+        return events;
     }
 
     private void validate(Event event) throws EventCannotCreateException {
