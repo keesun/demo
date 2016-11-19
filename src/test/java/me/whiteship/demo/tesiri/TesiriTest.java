@@ -21,7 +21,7 @@ public class TesiriTest {
 
         Integer crime;
 
-        LocalDateTime localDateTime;
+        LocalDateTime hayahara;
     }
 
     @Data
@@ -39,7 +39,7 @@ public class TesiriTest {
         assertNotNull(president.getGetOut());
         assertNotEquals(0, president.getNumberOfPropofol());
         assertNotNull(president.getCrime());
-        assertNotNull(president.getLocalDateTime());
+        assertNotNull(president.getHayahara());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class TesiriTest {
         assertNotNull(jungUra.getGetOut());
         assertNotEquals(0, jungUra.getNumberOfPropofol());
         assertNotNull(jungUra.getCrime());
-        assertNotNull(jungUra.getLocalDateTime());
+        assertNotNull(jungUra.getHayahara());
         assertNotNull(jungUra.getHorse());
     }
 
