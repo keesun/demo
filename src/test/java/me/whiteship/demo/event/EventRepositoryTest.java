@@ -57,7 +57,6 @@ public class EventRepositoryTest {
         List<Event> events = new ArrayList<>();
         Iterable<Event> iterable = eventRepository.findAll(new Sort(Sort.Direction.DESC, "startDateTime"));
         iterable.forEach(events::add);
-        events.forEach(System.out::println);
         assertEquals(test1.getId(), events.get(0).getId());
         assertEquals(test2.getId(), events.get(1).getId());
     }
