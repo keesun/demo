@@ -2,10 +2,10 @@ package me.whiteship.demo.event;
 
 import me.whiteship.demo.domain.Event;
 import me.whiteship.demo.domain.EventStatus;
-import me.whiteship.demo.domain.SimpleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * @author keesun
  */
+@Service
 public class SimpleEventService implements EventService {
 
     @Autowired EventRepository repository;
