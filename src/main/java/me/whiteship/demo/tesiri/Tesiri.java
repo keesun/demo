@@ -11,12 +11,12 @@ import java.util.Random;
 public class Tesiri {
 
     public <T> T create(Class<T> clazz) {
-        T t = null;
+        T t;
         try {
             Constructor[] ctors = clazz.getDeclaredConstructors();
             Constructor ctor = null;
-            for (int i = 0; i < ctors.length; i++) {
-                ctor = ctors[i];
+            for (Constructor ctor1 : ctors) {
+                ctor = ctor1;
                 if (ctor.getGenericParameterTypes().length == 0)
                     break;
             }
