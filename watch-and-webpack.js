@@ -1,7 +1,9 @@
+const webpack = require('webpack');
+const fs = require('fs');
 var path = require('path');
 
-module.exports = {
-    entry: './front/js/app.js',
+var options = {
+    entry: './src/main/js/app.js',
     devtool: 'source-map',
     cache: true,
     debug: true,
@@ -23,3 +25,13 @@ module.exports = {
         ]
     }
 };
+
+fs.watch('src/main/js', function (e, file) {
+    console.log('event is: ' + e);
+    console.log('file is: ' + file);
+    var compiler = webpack(options);
+    compiler.run(function(err, stats) {
+        console.log(err);
+        console.log(stats);
+    });
+});

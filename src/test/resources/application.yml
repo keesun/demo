@@ -1,3 +1,6 @@
 spring:
   redis:
     port: 7777 # Redis for testing
+
+url:
+  jsBundle: built/bundle.js
