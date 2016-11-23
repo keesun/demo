@@ -3,3 +3,4 @@ demo.iml
 target/
 src/main/resources/static/built/
 node_modules/
+npm-debug.log

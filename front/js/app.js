@@ -1,14 +1,14 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TopMenu from './TopMenu';
 
-class App extends React.Component {
-
-    render() {
-        return <h1>Hello 111</h1>;
-    }
-
-}
+const App = () => (
+    <MuiThemeProvider>
+        <TopMenu />
+    </MuiThemeProvider>
+);
 
 ReactDOM.render(<App />, document.getElementById('react'));
