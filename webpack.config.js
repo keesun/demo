@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: './front/js/app.js',
@@ -12,14 +13,16 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: path.join(__dirname, '.'),
-                exclude: /(node_modules)/,
-                loader: 'babel',
-                query: {
+                test: /\.js$/,
+                loaders: ['react-hot', 'babel?' + JSON.stringify({
                     cacheDirectory: true,
                     presets: ['es2015', 'react']
-                }
+                })],
+                exclude: /node_modules/,
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };

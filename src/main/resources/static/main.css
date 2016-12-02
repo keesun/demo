@@ -1,4 +1,7 @@
 body {
-    background: cornflowerblue;
     font-family: 'Roboto', sans-serif;
+}
+
+.muidocs-icon-custom-github:before {
+    content: "\e625";
 }
